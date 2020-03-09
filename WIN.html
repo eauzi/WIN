@@ -1,1 +1,40 @@
-<h1>Bienvenue </h1>
+<head>
+	<script>
+		function FaireBlagues() {
+			fetch('https://sv443.net/jokeapi/category/any?blacklistFlags=nsfwreligiouspolitical').then(response => {
+				return response.json()
+			})
+				.then(data => {
+					// Work with JSON data here
+
+					if(data.type=="single")
+                    {
+                        document.write("Blague : " + data.joke);
+                    }
+                    else
+                    {
+                        document.write(data.setup);
+                        document.write(" ");
+                        document.write(data.delivery);
+                    }
+                    
+                    document.write();
+				})
+				.catch(err => {
+					// Do something for an error here
+				})
+
+        }
+
+
+	</script>
+
+
+</head>
+
+<body>
+	<h1>Bienvenue sur WIN</h1>
+    <button onclick="FaireBlagues()"> Accéder aux blagues</button> </br></br>
+</body>
+
+</html>
