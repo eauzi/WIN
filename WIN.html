@@ -1,31 +1,35 @@
+<html>
 <head>
+	<?php
+	header("Access-Control-Allow-Origin: *");
+	?>
 	<script>
 
 		var joke;
 		var setup;
-		var delivery;	
+		var delivery;
 		var maxWidth = 400;
 		var lineHeight = 24;
 
-			function wrapText(context, text, x, y, maxWidth, lineHeight) {
-				var words = text.split(' ');
-				var line = '';
+		function wrapText(context, text, x, y, maxWidth, lineHeight) {
+			var words = text.split(' ');
+			var line = '';
 
-				for (var n = 0; n < words.length; n++) {
-					var testLine = line + words[n] + ' ';
-					var metrics = context.measureText(testLine);
-					var testWidth = metrics.width;
-					if (testWidth > maxWidth && n > 0) {
-						context.fillText(line, x, y);
-						line = words[n] + ' ';
-						y += lineHeight;
-					}
-					else {
-						line = testLine;
-					}
+			for (var n = 0; n < words.length; n++) {
+				var testLine = line + words[n] + ' ';
+				var metrics = context.measureText(testLine);
+				var testWidth = metrics.width;
+				if (testWidth > maxWidth && n > 0) {
+					context.fillText(line, x, y);
+					line = words[n] + ' ';
+					y += lineHeight;
 				}
-				context.fillText(line, x, y);
+				else {
+					line = testLine;
+				}
 			}
+			context.fillText(line, x, y);
+		}
 
 
 
@@ -53,8 +57,7 @@
 
 		}
 
-
-		function afficherBulle() {
+		function faireBlague1partie(xBulle1 = 50, yBulle1 = 50, x1 = 100, y1 = 200) {
 			FaireBlagues();
 			var img = document.createElement("img");
 			img.src = "bulleBd.jpg";
@@ -64,29 +67,36 @@
 				var canvas = document.getElementById('canvas');
 				var ctx = canvas.getContext('2d');
 				ctx.clearRect(0, 0, 1600, 800);
-				ctx.drawImage(img, 50, 50);
+				ctx.drawImage(img, xBulle1, yBulle1);
 
 				ctx.font = "30px Arial";
-				wrapText(ctx, joke, 100, 200, maxWidth, lineHeight);
-
-			}
-			else if((setup != null) && (delivery!=null)) {
-
-
-				var canvas = document.getElementById('canvas');
-				var ctx = canvas.getContext('2d');
-				ctx.clearRect(0, 0, 1600, 800);
-				ctx.drawImage(img, 10, 10);
-				ctx.drawImage(img, 800, 10);
-
-				ctx.font = "30px Arial";
-				wrapText(ctx, setup, 100, 200, maxWidth, lineHeight);
-				wrapText(ctx, delivery, 900, 200, maxWidth, lineHeight);
+				wrapText(ctx, joke, x1, y1, maxWidth, lineHeight);
 
 			}
 
 		}
 
+		function faireBlague2parties(xBulle2_1 = 10, yBulle2_1 = 10, xBulle2_2 = 800, yBulle2_2 = 10, x1 = 100, y1 = 200, x2 = 900, y2 = 200)
+		{
+			FaireBlagues();
+			var img = document.createElement("img");
+			img.src = "bulleBd.jpg";
+			if ((setup != null) && (delivery != null)) {
+
+
+				var canvas = document.getElementById('canvas');
+				var ctx = canvas.getContext('2d');
+				ctx.clearRect(0, 0, 1600, 800);
+				ctx.drawImage(img, xBulle2_1, yBulle2_1);
+				ctx.drawImage(img, xBulle2_2, yBulle2_2);
+
+				ctx.font = "30px Arial";
+				wrapText(ctx, setup, x1, y1, maxWidth, lineHeight);
+				wrapText(ctx, delivery, x2, y2, maxWidth, lineHeight);
+
+			}
+
+		}
 
 	</script>
 
@@ -95,8 +105,8 @@
 
 <body>
 	<h1>Bienvenue sur WIN</h1>
-	<button onclick="FaireBlagues()"> Accéder aux blagues</button> </br></br>
-	<button onclick="afficherBulle()"> Afficher bulle</button> </br></br>
+	<button onclick="faireBlague1partie()"> Blague en 1 partie</button> </br></br>
+	<button onclick="faireBlague2parties()"> Blague en 2 parties</button> </br></br>
 
 	<div>
 		<canvas id="canvas" width="1600" height="800" style="border:1px solid #000000;"></canvas>
