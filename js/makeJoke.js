@@ -28,7 +28,7 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
 
 
 function FaireBlagues() {
-  fetch('https://sv443.net/jokeapi/category/any?blacklistFlags=nsfwreligiouspolitical').then(response => {
+  fetch('https://sv443.net/jokeapi/category/any').then(response => {
     return response.json()
   })
     .then(data => {
@@ -50,31 +50,27 @@ function FaireBlagues() {
 
 }
 
-function afficherBlague(x1 = 100, y1 = 200, x2 = 500, y2 = 200) {
-  FaireBlagues();
-  var img = document.createElement("img");
-  img.src = "bulleBd.jpg";
-
-  if (joke != null) {
+function afficherBlague(x1 = 100, y1 = 200, x2 = 500, y2 = 200, obj) {
+  console.log(obj);
+  if (obj.joke != null) {
 
     var canvas = document.getElementById('myCanvas');
     var ctx = canvas.getContext('2d');
-    
+
 
     ctx.font = "italic small-caps bold 40px arial";
-    wrapText(ctx, joke, x1, y1, maxWidth, lineHeight);
+    wrapText(ctx, obj.joke, x1, y1, maxWidth, lineHeight);
 
   }
-  if ((setup != null) && (delivery != null)) {
+  if ((obj.setup != null) && (obj.delivery != null)) {
 
 
     var canvas = document.getElementById('myCanvas');
     var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, 1600, 800);
 
     ctx.font = "italic small-caps bold 40px arial";
-    wrapText(ctx, setup, x1, y1, maxWidth, lineHeight);
-    wrapText(ctx, delivery, x2, y2, maxWidth, lineHeight);
+    wrapText(ctx, obj.setup, x1, y1, maxWidth, lineHeight);
+    wrapText(ctx, obj.delivery, x2, y2, maxWidth, lineHeight);
 
   }
 

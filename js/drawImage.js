@@ -3,17 +3,19 @@ function drawImage(url){
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   var img = new Image();
+  ctx.clearRect(0, 0, 1800, 1800);
   img.onload = function(){
 
-    console.log(img.width);
-    console.log(img.height);
+
+
     canvas.height = img.height;
     canvas.width = img.width;
+    ctx.globalAlpha = 0.5;
 
-    ctx.globalAlpha = 0.8;
     ctx.drawImage(img, 0, 0);
     ctx.globalAlpha = 1;
-    afficherBlague();
+
+    loadJoke();
   };
   img.src = url;
 }
