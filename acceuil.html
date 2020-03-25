@@ -10,6 +10,10 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<script type="text/javascript" src="js/loadFile.js"></script>
+		<script type="text/javascript" src="js/drawImage.js"></script>
+		<script type="text/javascript" src="js/makeJoke.js"></script>
 	</head>
 	<body class="is-preload">
 
@@ -27,13 +31,18 @@
 				<input type="submit" value="Upload img" />
 			</form> -->
 
-			<button>INVOCATION</button>
+			<button onclick="loadFile()">INVOCATION</button>
+
+
+
+
+
 			<!--pour le bouton il faut le compléter par button onclick="myFunction()"-->
 </div>
 
 		<!-- ESPACE IMAGE-->
 		<div class="div2">
-			<img src="imgtest.jpg">
+			<canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
 		</div>
 
 		<!-- Footer -->
