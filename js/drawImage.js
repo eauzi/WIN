@@ -10,10 +10,10 @@ function drawImage(url){
     canvas.height = img.height;
     canvas.width = img.width;
 
-    ctx.globalAlpha = 0.5;
+    ctx.globalAlpha = 0.8;
     ctx.drawImage(img, 0, 0);
     ctx.globalAlpha = 1;
-    faireBlague1partie();
+    afficherBlague();
   };
   img.src = url;
 }
